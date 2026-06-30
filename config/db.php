@@ -1,14 +1,15 @@
 <?php
 
 return [
-    'class' => \yii\db\Connection::class,
-    'dsn' => 'mysql:host=localhost;dbname=yii2basic',
-    'username' => 'root',
-    'password' => '',
-    'charset' => 'utf8',
+    'class' => yii\db\Connection::class,
 
-    // Schema cache options (for production environment)
-    //'enableSchemaCache' => true,
-    //'schemaCacheDuration' => 60,
-    //'schemaCache' => 'cache',
+    'dsn' => sprintf(
+        'pgsql:host=postgres;port=5432;dbname=%s',
+        getenv('POSTGRES_DB')
+    ),
+
+    'username' => getenv('POSTGRES_USER'),
+    'password' => getenv('POSTGRES_PASSWORD'),
+
+    'charset' => 'utf8',
 ];
